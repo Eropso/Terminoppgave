@@ -1,32 +1,3 @@
-CREATE TABLE `game_plays` (
- `id` int(11) NOT NULL AUTO_INCREMENT,
- `user_id` int(11) DEFAULT NULL,
- `game_name` varchar(255) DEFAULT NULL,
- `played_at` timestamp NOT NULL DEFAULT current_timestamp(),
- PRIMARY KEY (`id`),
- KEY `user_id` (`user_id`),
- CONSTRAINT `game_plays_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
-
-
-CREATE TABLE `minesweeper_scores` (
- `id` int(11) NOT NULL AUTO_INCREMENT,
- `user_id` int(11) NOT NULL,
- `best_time` int(11) NOT NULL,
- PRIMARY KEY (`id`),
- KEY `user_id` (`user_id`),
- CONSTRAINT `minesweeper_scores_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
-
-
-CREATE TABLE `snake_scores` (
- `user_id` int(11) NOT NULL,
- `highest_score` int(11) NOT NULL,
- PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
-
-
-
 CREATE TABLE `users` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `user` varchar(254) NOT NULL,
@@ -37,3 +8,33 @@ CREATE TABLE `users` (
  UNIQUE KEY `user` (`user`),
  UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+
+
+
+CREATE TABLE `workout_days` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) NOT NULL,
+ `workout_date` date NOT NULL,
+ PRIMARY KEY (`id`),
+ KEY `user_id` (`user_id`),
+ CONSTRAINT `workout_days_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+
+
+
+CREATE TABLE `workout_logs` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) NOT NULL,
+ `workout_day_id` int(11) NOT NULL,
+ `exercise` varchar(255) NOT NULL,
+ `sets` int(11) NOT NULL,
+ `reps` int(11) NOT NULL,
+ `weight` float NOT NULL,
+ PRIMARY KEY (`id`),
+ KEY `user_id` (`user_id`),
+ KEY `workout_day_id` (`workout_day_id`),
+ CONSTRAINT `workout_logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+ CONSTRAINT `workout_logs_ibfk_2` FOREIGN KEY (`workout_day_id`) REFERENCES `workout_days` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci

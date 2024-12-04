@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && $_POST['s
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="body">
 <div class="form-container">
     <h2>Login</h2>
     <form action="" method="POST">
@@ -96,6 +96,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && $_POST['s
             Not a user?
             <a href="register.php">Register yourself now</a>
         </p>
+        
+        <a href="reset_password.php">
+            <input type="button" value="I forgot my password">
+        </a>
+
+
     </form>
 </div>
 </body>

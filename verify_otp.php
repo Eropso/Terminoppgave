@@ -57,7 +57,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'verify_otp') {
     <title>Verification Code</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="body">
 <div class="form-container">
     <h2>2-Step Verification</h2>
 

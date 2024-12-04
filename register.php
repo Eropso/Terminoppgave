@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && $_POST['s
     <title>Register</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="body">
 <div class="form-container">
     <h2>Register</h2>
     <form action="" method="POST">
