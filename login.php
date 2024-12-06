@@ -28,45 +28,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && $_POST['s
             // User exists, verify password
             $user = mysqli_fetch_assoc($result);
             if (password_verify($password, $user['password'])) {
-                // Password correct, generate OTP
-                $otp = rand(100000, 999999);
-                $_SESSION['otp'] = $otp;
-                $_SESSION['email'] = $email;
-                $_SESSION['is_new_user'] = false;
-                $_SESSION['user_id'] = $user['id']; 
+                // Password correct, check if 2FA is enabled
+                if ($user['is_2fa_enabled']) {
+                    // Generate OTP
+                    $otp = rand(100000, 999999);
+                    $_SESSION['otp'] = $otp;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['is_new_user'] = false;
+                    $_SESSION['user_id'] = $user['id']; 
 
+                    // Send OTP via email using PHPMailer
+                    $mail = new PHPMailer(true);
+                    try {
+                        $mail->isSMTP();
+                        $mail->Host = 'smtp.gmail.com';
+                        $mail->SMTPAuth = true;
+                        $mail->Username = 'phpkuben@gmail.com';
+                        $mail->Password = 'srnq cqiy dqzu kyfl'; 
+                        $mail->SMTPSecure = 'tls';
+                        $mail->Port = 587;
 
-                // Send OTP via email using PHPMailer
-                $mail = new PHPMailer(true);
-                try {
-                    $mail->isSMTP();
-                    $mail->Host = 'smtp.gmail.com';
-                    $mail->SMTPAuth = true;
-                    $mail->Username = 'phpkuben@gmail.com';
-                    $mail->Password = 'srnq cqiy dqzu kyfl'; 
-                    $mail->SMTPSecure = 'tls';
-                    $mail->Port = 587;
+                        $mail->setFrom('from@example.com', 'EroZone');
+                        $mail->addAddress($email);
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Verification Code for EroZone Login';
+                        $mail->Body = "Your Verification Code is <b>$otp</b>";
+                        $mail->AltBody = "Your Verification Code is $otp";
 
-                    $mail->setFrom('from@example.com', 'EroZone');
-                    $mail->addAddress($email);
-                    $mail->isHTML(true);
-                    $mail->Subject = 'Verification Code for EroZone Login';
-                    $mail->Body = "Your Verification Code is <b>$otp</b>";
-                    $mail->AltBody = "Your Verification Code is $otp";
+                        $mail->send();
 
-                    $mail->send();
-
-                    // Redirect to OTP verification page
-                    header("Location: verify_otp.php");
+                        header("Location: verify_otp.php");
+                        exit();
+                    } catch (Exception $e) {
+                        echo "Error: {$mail->ErrorInfo}";
+                    }
+                } else {
+                    $_SESSION['loggedin'] = true; 
+                    $_SESSION['user_id'] = $user['id'];
+                    header("Location: " . $redirect);
                     exit();
-                } catch (Exception $e) {
-                    echo "Error: {$mail->ErrorInfo}";
                 }
             } else {
                 echo "Incorrect password. Please try again.";
             }
         } else {
-            echo "User not found, check your credentials and make sure they are correct.";
+            echo "User  not found, check your credentials and make sure they are correct.";
         }
     }
 }
@@ -78,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && $_POST['s
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="body">
 <div class="form-container">
@@ -90,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && $_POST['s
         <div>
             <input type="password" name="password" placeholder="Password" required>
         </div>
-        <button type="submit" name="submit" value="login">Log In</button>
+        <button class="registration-button" type="submit" name="submit" value="login">Log In</button>
 
         <p>
             Not a user?
@@ -100,8 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && $_POST['s
         <a href="reset_password.php">
             <input type="button" value="I forgot my password">
         </a>
-
-
     </form>
 </div>
 </body>

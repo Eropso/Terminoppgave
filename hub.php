@@ -9,7 +9,7 @@ include("database.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Hub</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -22,9 +22,9 @@ include("database.php");
         </ul>
         
         <ul>
-            <li><a class="malpace-logo" href="index.html"><p>Opsofit</p></a></li>
-            <li class="hideOnMobile"><a href="herre.html">Herre</a></li>
-            <li class="hideOnMobile"><a href="dame.html">Dame</a></li>
+            <li><a class="opsofit-logo" href="hub.php"><p>Opsofit</p></a></li>
+            <li class="hideOnMobile"><a href="#">About</a></li>
+            <li class="hideOnMobile"><a href="#">FAQ</a></li>
             <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
                 <div class="dropdown">
                     <img class="profile" src="defaultprofile.svg" alt="defaultprofile" onclick="myFunction()">

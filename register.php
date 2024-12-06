@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && $_POST['s
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="body">
 <div class="form-container">
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit']) && $_POST['s
         <div>
             <input type="password" name="password" placeholder="Password" required>
         </div>
-        <button type="submit" name="submit" value="register">Sign Up</button>
+        <button class="registration-button" type="submit" name="submit" value="register">Sign Up</button>
     </form>
     <p>
         Already have an account? 

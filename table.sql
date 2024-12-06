@@ -3,13 +3,12 @@ CREATE TABLE `users` (
  `user` varchar(254) NOT NULL,
  `username` varchar(50) NOT NULL,
  `password` char(255) NOT NULL,
+ `is_2fa_enabled` tinyint(1) NOT NULL DEFAULT 0,
  `reg_date` datetime NOT NULL DEFAULT current_timestamp(),
  PRIMARY KEY (`id`),
  UNIQUE KEY `user` (`user`),
  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
-
-
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
 
 
 CREATE TABLE `workout_days` (

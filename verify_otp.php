@@ -55,7 +55,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'verify_otp') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification Code</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="body">
 <div class="form-container">
@@ -65,7 +65,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'verify_otp') {
         <div>
             <input type="text" name="otp" placeholder="Enter 6-digit Code" required>
         </div>
-        <button type="submit" name="submit" value="verify_otp">Verify</button>
+        <button class="registration-button" type="submit" name="submit" value="verify_otp">Verify</button>
     </form>
 </div>
 </body>

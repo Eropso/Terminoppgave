@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset_password'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="body">
 <div class="form-container">
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset_password'])) {
             <div>
                 <input type="email" name="email" placeholder="Enter your email" required>
             </div>
-            <button type="submit" name="request_reset">Request Password Reset</button>
+            <button class="registration-button" type="submit" name="request_reset">Request Password Reset</button>
         </form>
 
     <?php elseif (isset($_SESSION['otp_verified']) && $_SESSION['otp_verified']): ?>
@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset_password'])) {
             <div>
                 <input type="password" name="confirm_password" placeholder="Confirm Password" required>
             </div>
-            <button type="submit" name="reset_password">Reset Password</button>
+            <button class="registration-button" type="submit" name="reset_password">Reset Password</button>
         </form>
 
     <?php else: ?>
@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset_password'])) {
             <div>
                 <input type="text" name="otp" placeholder="Enter OTP" required>
             </div>
-            <button type="submit" name="verify_otp">Verify OTP</button>
+            <button class="registration-button" type="submit" name="verify_otp">Verify OTP</button>
         </form>
     <?php endif; ?>
 </div>
