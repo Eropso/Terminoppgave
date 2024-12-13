@@ -115,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_workout_day']))
     mysqli_stmt_bind_param($stmt, "ii", $workout_day_id, $user_id);
     mysqli_stmt_execute($stmt);
 
-    // Optionally, you can redirect to the same page to refresh the list
     header("Location: tracker.php?success=1");
     exit();
 }
