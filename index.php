@@ -31,14 +31,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
     // Prepare the chart data
     $chart_data = [
-        'labels' => $labels,  // Weeks for the X-axis
+        'labels' => $labels,  
         'datasets' => [[
             'label' => 'Workouts Logged',
-            'data' => $workout_counts,  // Workout counts for the Y-axis
-            'backgroundColor' => 'rgba(75, 192, 192, 0.5)',  // Line color (transparent background)
-            'borderColor' => 'rgba(75, 192, 192, 1)',  // Line color
+            'data' => $workout_counts,
+            'backgroundColor' => 'rgba(75, 192, 192, 0.5)',
+            'borderColor' => 'rgba(75, 192, 192, 1)',
             'borderWidth' => 2,
-            'fill' => false  // Set this to false to remove filling under the line
+            'fill' => false 
         ]]
     ];
 
