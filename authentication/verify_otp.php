@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("database.php");
+include("../database.php");
 
 if (!isset($_SESSION['otp'])) {
     header("Location: login.php");
@@ -25,7 +25,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'verify_otp') {
                 unset($_SESSION['is_new_user']);
 
                 // Redirect to the original game or hub
-                $redirect = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : 'hub.php';
+                $redirect = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : '../index.php';
                 header("Location: " . $redirect);
                 exit();
             } else {
@@ -33,13 +33,13 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'verify_otp') {
             }
         } else {
             // Existing user login
-            $_SESSION['loggedin'] = true; // Login successful
+            $_SESSION['loggedin'] = true;
             unset($_SESSION['otp']);
             unset($_SESSION['email']);
             unset($_SESSION['is_new_user']);
 
             // Redirect to the original game or hub
-            $redirect = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : 'hub.php';
+            $redirect = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : '../index.php';
             header("Location: " . $redirect);
             exit();
         }
@@ -55,7 +55,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'verify_otp') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification Code</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body class="body">
 <div class="form-container">

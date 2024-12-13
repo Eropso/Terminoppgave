@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Libre Franklin", sans-serif;
+}
+
 
 .body {
     margin: 0;
@@ -11,8 +20,6 @@
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
     display: flex;
@@ -20,7 +27,6 @@
     align-items: center;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
  
 .header {
@@ -164,7 +170,7 @@ nav li:first-child{
 }
 
 .dropdown-content a:hover {
-    background-color: #b32dff;
+    background-color: rgb(177, 75, 255);
 }
 
 .show {
@@ -175,6 +181,7 @@ nav li:first-child{
     cursor: pointer;
     width: 50px;
     height: 50px;
+    padding-right: 15px;
 }
 
 
@@ -196,15 +203,15 @@ nav li:first-child{
 
 }
 
-  
-  
-  
-  
-  
 
-  
 
-/* Authorization */
+
+
+
+
+
+
+/* Authentication */
 .logout-button {
     padding: 10px 20px;
     color: #fff;
@@ -219,6 +226,7 @@ nav li:first-child{
 .login-button {
     background-color: rgb(152, 16, 255);
     padding: 10px 20px;
+    margin-right: 15px;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -233,7 +241,7 @@ nav li:first-child{
 }
 
 .logout-button:hover {
-    background-color: #b32dff;
+    background-color: rgb(177, 75, 255);
 }
 
 .title {
@@ -305,9 +313,6 @@ input[type="text"] {
     padding: 20px;
 }
 
-.tracker-page h2 {
-    color: #333;
-}
 
 .tracker-page form {
     background: #fff;
@@ -381,4 +386,164 @@ input[type="text"] {
 
 .tracker-page a:hover {
     text-decoration: underline;
+}
+
+
+
+
+
+
+
+/* About */
+.about_container {
+    display: flex;
+    margin-right: 30px;
+    margin-left: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer*/
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 200px 0 50px 0;
+}
+  
+.footer-info {
+    display: flex;
+    gap: 20px;
+}
+footer a {
+    color: black; 
+    text-decoration: none; 
+}
+  
+footer a:hover {
+    text-decoration: underline; 
+}
+  
+@media(max-width: 800px){
+    .footer-info {
+      flex-direction: column;
+    }
+  
+}
+
+
+
+
+/* Homepage */
+
+.bodybuilder {
+    width: 500px;
+    height: 600px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+.bodybuilder img {
+    width: 100%;
+    height: auto;
+}
+
+
+.hero {
+    display: flex;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 720px) {
+    .hero {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    
+}
+
+.hero_text {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    padding-left: 10%;
+}
+
+.line_home {
+    height: 5px;
+    width: 400px;
+    background-color: black;
+    margin: 0;
+}
+
+.short_about {
+    margin-top: 3%;
+    font-size: 30px;
+}
+
+.title_hero {
+    font-size: 70px;
+}
+.button_hero {
+    font-size: 25px;
+    width: 200px;
+    height: 45px;
+    cursor: pointer;
+}
+
+
+.button_hero button {
+    font-size: 25px;
+    width: 200px;
+    height: 45px;
+    color: white;
+    background-color: rgb(152, 16, 255);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.button_hero button:hover {
+    background-color: rgb(177, 75, 255);
+}
+
+a.button-link {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.black {
+    color: black;
+}
+
+
+
+#workoutFrequencyChart {
+    width: 100%; 
+    height: 600px;
 }

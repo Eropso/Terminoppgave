@@ -1,9 +1,9 @@
 <?php
 session_start();
-include("database.php");
-require 'phpmailer/src/Exception.php';
-require 'phpmailer/src/PHPMailer.php';
-require 'phpmailer/src/SMTP.php';
+include("../database.php");
+require '../phpmailer/src/Exception.php';
+require '../phpmailer/src/PHPMailer.php';
+require '../phpmailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset_password'])) {
         mysqli_stmt_bind_param($stmt, "ss", $hashed_password, $_SESSION['reset_email']);
         mysqli_stmt_execute($stmt);
 
-        $redirect = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : 'hub.php';
+        $redirect = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : '../index.php';
         header("Location: " . $redirect);
         exit();
         
@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset_password'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body class="body">
 <div class="form-container">
