@@ -11,6 +11,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
 
 
+
 CREATE TABLE `workout_days` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `user_id` int(11) NOT NULL,
@@ -18,8 +19,7 @@ CREATE TABLE `workout_days` (
  PRIMARY KEY (`id`),
  KEY `user_id` (`user_id`),
  CONSTRAINT `workout_days_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
-
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
 
 
 
@@ -36,4 +36,18 @@ CREATE TABLE `workout_logs` (
  KEY `workout_day_id` (`workout_day_id`),
  CONSTRAINT `workout_logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
  CONSTRAINT `workout_logs_ibfk_2` FOREIGN KEY (`workout_day_id`) REFERENCES `workout_days` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+
+
+CREATE TABLE `sets` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `exercise_id` int(11) NOT NULL,
+ `reps` int(11) NOT NULL,
+ `weight` float NOT NULL,
+ `note` text DEFAULT NULL,
+ `set_number` int(11) NOT NULL,
+ PRIMARY KEY (`id`),
+ KEY `exercise_id` (`exercise_id`),
+ CONSTRAINT `sets_ibfk_1` FOREIGN KEY (`exercise_id`) REFERENCES `workout_logs` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
