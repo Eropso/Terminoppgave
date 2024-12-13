@@ -30,6 +30,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     mysqli_stmt_bind_param($stmt, "iis", $user_id, $workout_day_id, $exercise);
     mysqli_stmt_execute($stmt);
 
+    // Get the last inserted exercise ID
+    $exercise_id = mysqli_insert_id($conn);
+
+    // Insert a default set for the new exercise
+    $default_weight = 0;
+    $default_reps = 0;
+    $default_note = '';
+    $set_number = 1;
+
+    $sql = "INSERT INTO sets (exercise_id, weight, reps, note, set_number) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "idisi", $exercise_id, $default_weight, $default_reps, $default_note, $set_number);
+    mysqli_stmt_execute($stmt);
+
     // Fetch exercises again after insertion
     $sql = "SELECT * FROM workout_logs WHERE workout_day_id = ? AND user_id = ?";
     $stmt = mysqli_prepare($conn, $sql);
@@ -87,6 +101,23 @@ if ($selected_workout_day_id) {
     mysqli_stmt_bind_param($stmt, "ii", $selected_workout_day_id, $user_id);
     mysqli_stmt_execute($stmt);
     $exercises_result = mysqli_stmt_get_result($stmt);
+}
+
+
+
+// Handle workout day deletion
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_workout_day'])) {
+    $workout_day_id = filter_input(INPUT_POST, "workout_day_id", FILTER_SANITIZE_NUMBER_INT);
+
+    // Delete the workout day from the database
+    $sql = "DELETE FROM workout_days WHERE id = ? AND user_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ii", $workout_day_id, $user_id);
+    mysqli_stmt_execute($stmt);
+
+    // Optionally, you can redirect to the same page to refresh the list
+    header("Location: tracker.php?success=1");
+    exit();
 }
 ?>
 
@@ -146,6 +177,10 @@ if ($selected_workout_day_id) {
                 <td><?php echo $workout_day['workout_date']; ?></td>
                 <td>
                     <a href="?workout_day_id=<?php echo $workout_day['id']; ?>">View Exercises</a>
+                    <form method="POST" action="" style="display:inline;">
+                        <input type="hidden" name="workout_day_id" value="<?php echo $workout_day['id']; ?>">
+                        <button type="submit" name="delete_workout_day" onclick="return confirm('Are you sure you want to delete this workout day?');">Delete</button>
+                    </form>
                 </td>
             </tr>
             <?php endwhile; ?>

@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
                 <td>Set ${tbody.children.length + 1}</td>        
-                <td><input type="number" name="weight[]" step="0.1" required style="width: 60px;"></td>
-                <td><input type="number" name="reps[]" required style="width: 60px;"></td>
-                <td><input type="text" name="note[]" style="width: 200px;"></td>
+                <td><input type="number" name="weight[]" step="0.1" required style="width: 60px;" class="auto-save"></td>
+                <td><input type="number" name="reps[]" required style="width: 60px;" class="auto-save"></td>
+                <td><input type="text" name="note[]" style="width: 200px;" class="auto-save"></td>
             `;
 
             tbody.appendChild(newRow);
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                           console.error('Error updating set:', result.error);
                       }
                   });
-            }, 200); // Save 200ms after typing stops
+            }, 200);
         });
     });
 });
